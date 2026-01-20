@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* =========================
+   VARIABLES PRINCIPALES
+========================= */
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #a78bfa; /* Lila principal */
+  --color-accent: #c4b5fd;  /* Lila claro */
+  --color-card: #f5f5f5;
+
+  --font-sans: 'Arial', 'Helvetica', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+    --color-card: #1a1a1a;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+}
+
+/* Tarjetas de materias */
+.card {
+  background: var(--color-card);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Botones */
+.button {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: var(--color-accent);
+}
+
+/* Encabezados */
+h1, h2, h3 {
+  font-family: var(--font-sans);
+  color: var(--color-primary);
+}
+
+/* Scroll horizontal estilo TikTok */
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+}
+
+.scroll-container .card {
+  scroll-snap-align: start;
+  min-width: 250px;
+  flex-shrink: 0;
+}
