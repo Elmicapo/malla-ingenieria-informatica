@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 // Datos completos de semestres y materias
 const semestres = [
   { nivel: 1, materias: [
-    { id: "s1m1", nombre: "Lengua Materna", creditos: 2, tipologia: "B", prereq: [] },
-    { id: "s1m2", nombre: "Cálculo Diferencial", creditos: 3, tipologia: "B", prereq: [] },
-    { id: "s1m3", nombre: "Introducción al Área Profesional", creditos: 3, tipologia: "C", prereq: [] },
-    { id: "s1m4", nombre: "Algoritmos y Programación I", creditos: 4, tipologia: "C", prereq: [] },
-    { id: "s1m5", nombre: "Matemáticas Discretas I", creditos: 4, tipologia: "B", prereq: [] },
-    { id: "s1m6", nombre: "Humanidades I (Cultura Contemporánea)", creditos: 2, tipologia: "T", prereq: [] },
+    { id: "s1m1", nombre: "MATEMATICAS", creditos: 3, tipologia: "B", prereq: [] },
+    { id: "s1m2", nombre: "HABILIDADES COMUNICATIVAS I", creditos: 2 , tipologia: "B", prereq: [] },
+    { id: "s1m3", nombre: "HUMANIDADES I", creditos: 2, tipologia: "B", prereq: [] },
+    { id: "s1m4", nombre: "ALGORITMOA Y PROGRAMACION I", creditos: 4, tipologia: "C", prereq: [] },
+    { id: "s1m5", nombre: "MATEMATICAS DISCRETAS", creditos: 3, tipologia: "C", prereq: [] },
+    { id: "s1m6", nombre: "INTRODUCCION AL AREA PROFESIONAL", creditos: 2, tipologia: "C", prereq: [] },
   ]},
   { nivel: 2, materias: [
-    { id: "s2m1", nombre: "Física del Movimiento", creditos: 4, tipologia: "B", prereq: [] },
-    { id: "s2m2", nombre: "Cálculo Integral", creditos: 3, tipologia: "B", prereq: ["s1m2"] },
-    { id: "s2m3", nombre: "Geometría Vectorial", creditos: 3, tipologia: "B", prereq: [] },
+    { id: "s2m1", nombre: "GEOMETRIA VECTORIAL", creditos: 3, tipologia: "B", prereq: [] },
+    { id: "s2m2", nombre: "CALCULO DIFERENCIAL", creditos: 3, tipologia: "B", prereq: ["s1m1"] },
+    { id: "s2m3", nombre: "FISICA DEL MOVIMIENTO", creditos: 3, tipologia: "B", prereq: [] },
     { id: "s2m4", nombre: "Algoritmos y Programación II", creditos: 4, tipologia: "C", prereq: ["s1m4"] },
     { id: "s2m5", nombre: "Matemáticas Discretas II", creditos: 4, tipologia: "B", prereq: ["s1m5"] },
     { id: "s2m6", nombre: "Deporte, Arte y Recreación", creditos: 1, tipologia: "T", prereq: [] },
