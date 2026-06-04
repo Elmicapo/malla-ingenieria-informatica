@@ -4,84 +4,85 @@ import { useState, useEffect } from "react";
 // Datos completos de semestres y materias
 const semestres = [
   { nivel: 1, materias: [
-    { id: "s1m1", nombre: "MATEMATICAS", creditos: 3, tipologia: "B", prereq: [] },
-    { id: "s1m2", nombre: "HABILIDADES COMUNICATIVAS I", creditos: 2 , tipologia: "B", prereq: [] },
-    { id: "s1m3", nombre: "HUMANIDADES I", creditos: 2, tipologia: "B", prereq: [] },
-    { id: "s1m4", nombre: "ALGORITMOA Y PROGRAMACION I", creditos: 4, tipologia: "C", prereq: [] },
-    { id: "s1m5", nombre: "MATEMATICAS DISCRETAS", creditos: 3, tipologia: "C", prereq: [] },
-    { id: "s1m6", nombre: "INTRODUCCION AL AREA PROFESIONAL", creditos: 2, tipologia: "C", prereq: [] },
+    { id: "s1m1", nombre: "MATEMATICAS", creditos: 3, tipologia: "B", prereq: [], coreq: [] },
+    { id: "s1m2", nombre: "HABILIDADES COMUNICATIVAS I", creditos: 2 , tipologia: "B", prereq: [] , coreq: []},
+    { id: "s1m3", nombre: "HUMANIDADES I", creditos: 2, tipologia: "B", prereq: [] , coreq: []},
+    { id: "s1m4", nombre: "ALGORITMOS Y PROGRAMACION I", creditos: 4, tipologia: "C", prereq: [] , coreq: []},
+    { id: "s1m5", nombre: "MATEMATICAS DISCRETAS", creditos: 3, tipologia: "C", prereq: [] , coreq: []},
+    { id: "s1m6", nombre: "INTRODUCCION AL AREA PROFESIONAL", creditos: 2, tipologia: "C", prereq: [] , coreq: []},
   ]},
   { nivel: 2, materias: [
-    { id: "s2m1", nombre: "GEOMETRIA VECTORIAL", creditos: 3, tipologia: "B", prereq: [] },
-    { id: "s2m2", nombre: "CALCULO DIFERENCIAL", creditos: 3, tipologia: "B", prereq: ["s1m1"] },
-    { id: "s2m3", nombre: "FISICA DEL MOVIMIENTO", creditos: 3, tipologia: "B", prereq: [] },
-    { id: "s2m4", nombre: "Algoritmos y Programación II", creditos: 4, tipologia: "C", prereq: ["s1m4"] },
-    { id: "s2m5", nombre: "Matemáticas Discretas II", creditos: 4, tipologia: "B", prereq: ["s1m5"] },
-    { id: "s2m6", nombre: "Deporte, Arte y Recreación", creditos: 1, tipologia: "T", prereq: [] },
+    { id: "s2m1", nombre: "GEOMETRIA VECTORIAL", creditos: 3, tipologia: "B", prereq: [], coreq: [] },
+    { id: "s2m2", nombre: "CALCULO DIFERENCIAL", creditos: 3, tipologia: "B", prereq: ["s1m1"], coreq: [] },
+    { id: "s2m3", nombre: "FISICA DEL MOVIMIENTO", creditos: 3, tipologia: "B", prereq: ["s1m1"], coreq: ["s2m4]  },
+    { id: "s2m4", nombre: "LABORATORIO DE FISICA DEL MOVIEMIENTO", creditos: 1, tipologia: "B", prereq: [], coreq: [] },
+    { id: "s2m5", nombre: "HUMANIDADES COMUNICATIVAS II", creditos: 2, tipologia: "B", prereq: ["s1m2"] , coreq: []},
+    { id: "s2m6", nombre: "ALGORITMOS Y PROGRAMACION II", creditos: 4, tipologia: "C", prereq: ["s1m4"], coreq: [] },
+   {id: "s2m7", nombre: "DEPORTE, ARTE Y RECREACION", creditos:1 , tipologia: "T", prereq: [], , coreq: []} ,
+                                                                                                            
   ]},
   { nivel: 3, materias: [
-    { id: "s3m1", nombre: "Electricidad y Magnetismo", creditos: 4, tipologia: "B", prereq: ["s2m1"] },
-    { id: "s3m2", nombre: "Álgebra Lineal", creditos: 3, tipologia: "B", prereq: ["s2m3"] },
-    { id: "s3m3", nombre: "Cálculo de Varias Variables", creditos: 3, tipologia: "B", prereq: ["s2m2"] },
-    { id: "s3m4", nombre: "Algoritmos y Programación III", creditos: 3, tipologia: "C", prereq: ["s2m4"] },
-    { id: "s3m5", nombre: "Taller de Lenguajes de Programación I", creditos: 2, tipologia: "C", prereq: ["s2m4"] },
-    { id: "s3m6", nombre: "Semiótica Informática", creditos: 2, tipologia: "C", prereq: ["s1m3"] },
-    { id: "s3m7", nombre: "Pedagogía Constitucional", creditos: 1, tipologia: "T", prereq: [] },
+    { id: "s3m1", nombre: "HUMANIDADES II", creditos: 2, tipologia: "B", prereq: ["s1m3"], coreq: [] },
+    { id: "s3m2", nombre: "CALCULO INTEGRAL", creditos: 3, tipologia: "B", prereq: ["s2m2"], coreq: [] },
+    { id: "s3m3", nombre: "ALGEBRA LINEAL", creditos: 3, tipologia: "B", prereq: ["s2m1"] , coreq: []},
+    { id: "s3m4", nombre: "ALGORITMOS Y PROGRAMACIO III", creditos: 3, tipologia: "C", prereq: ["s2m6"], coreq: [] },
+    { id: "s3m5", nombre: "TALLER DE LENGUAJES DE PROGRAMACION I", creditos: 3, tipologia: "C", prereq: ["s2m6"], coreq: [] },
+    { id: "s3m6", nombre: "BASES DE DATOS I", creditos: 3, tipologia: "C", prereq: ["s1m5"], coreq: [] },
+  
   ]},
   { nivel: 4, materias: [
-    { id: "s4m1", nombre: "Ecuaciones Diferenciales", creditos: 3, tipologia: "B", prereq: ["s3m3"] },
-    { id: "s4m2", nombre: "Electrónica Digital", creditos: 4, tipologia: "C", prereq: ["s3m1"] },
-    { id: "s4m3", nombre: "Algoritmos y Programación IV", creditos: 3, tipologia: "C", prereq: ["s3m4"] },
-    { id: "s4m4", nombre: "Análisis de Software", creditos: 4, tipologia: "C", prereq: ["s3m5","s3m6"] },
-    { id: "s4m5", nombre: "Bases de Datos I", creditos: 4, tipologia: "C", prereq: ["s2m5"] },
+    { id: "s4m1", nombre: "CALCULO DE VARIAS VARIABLES", creditos: 3, tipologia: "B", prereq: ["s3m2"] , coreq: []},
+    { id: "s4m2", nombre: "ESTADISTICAS", creditos: 3, tipologia: "B", prereq: ["s3m2"], coreq: [] },
+    { id: "s4m3", nombre: "PROGRAMACION LINEAL", creditos: 3, tipologia: "B", prereq: ["s3m3"], coreq: [] },
+    { id: "s4m4", nombre: "ANALISIS DE SOFTWARE", creditos: 3, tipologia: "C", prereq: ["s3m5"], coreq: [] },
+    { id: "s4m5", nombre: "TALLER DE LENGUAJES DE PROGRAMACION II", creditos: 3, tipologia: "C", prereq: ["s3m5"], coreq: ["s4m6"] },
+    { id: "s4m6", nombre: "ALGORITMOS Y PROGRAMACION IV", creditos: 3, tipologia: "C", prereq: ["s3m4"], coreq: [] },
+    
   ]},
   { nivel: 5, materias: [
-    { id: "s5m1", nombre: "Taller de Lenguajes de Programación II", creditos: 2, tipologia: "C", prereq: ["s4m3"] },
-    { id: "s5m2", nombre: "Diseño de Software", creditos: 4, tipologia: "C", prereq: ["s4m4","s4m5"] },
-    { id: "s5m3", nombre: "Arquitectura de Hardware", creditos: 4, tipologia: "C", prereq: ["s4m2"] },
-    { id: "s5m4", nombre: "Teoría de Lenguajes y Compiladores", creditos: 4, tipologia: "C", prereq: ["s2m5","s3m5"] },
-    { id: "s5m5", nombre: "Estadística Aplicada", creditos: 4, tipologia: "C", prereq: ["s2m2"] },
+    { id: "s5m1", nombre: "ECUACIONES DIFERENCIALES", creditos: 3, tipologia: "B", prereq: ["s4m1"], coreq: [] },
+    { id: "s5m2", nombre: "DISEÑO DE SOTFWARE", creditos: 3, tipologia: "C", prereq: ["s4m4","s3m6"] , coreq: []},
+    { id: "s5m3", nombre: "BASES DE DATOS II", creditos: 3, tipologia: "C", prereq: ["s3m6"], coreq: [] },
+    { id: "s5m4", nombre: "ESTADISTICA INFERENCIAL", creditos: 3, tipologia: "C", prereq: ["s4m2"], coreq: [] },
+    { id: "s5m5", nombre: "FUNDAMENTOS DE CIRCUITOS Y DISPOSITIVOS ELECTRONICOS", creditos: 3, tipologia: "C", prereq: ["s2m3","s2m4"], coreq: [] },
   ]},
   { nivel: 6, materias: [
-    { id: "s6m1", nombre: "Proyecto de Construcción de Software", creditos: 2, tipologia: "C", prereq: ["s4m3","s5m2"] },
-    { id: "s6m2", nombre: "Bases de Datos II", creditos: 3, tipologia: "C", prereq: ["s4m5"] },
-    { id: "s6m3", nombre: "Emprendimiento Empresarial TI", creditos: 2, tipologia: "C", prereq: [] },
-    { id: "s6m4", nombre: "Teoría de la Información", creditos: 3, tipologia: "C", prereq: ["s5m5"] },
-    { id: "s6m5", nombre: "Análisis Numérico", creditos: 4, tipologia: "C", prereq: ["s3m2","s4m1"] },
-    { id: "s6m6", nombre: "Sistemas Operativos", creditos: 4, tipologia: "C", prereq: ["s5m3"] },
+    { id: "s6m1", nombre: "PROYECTO INTEGRADOR", creditos: 2, tipologia: "C", prereq: ["s5m2"] , coreq: []},
+    { id: "s6m2", nombre: "ELECTRONICA DIGITAL Y ARQUITECTURA DE HARDWARE", creditos: 3, tipologia: "C", prereq: ["s5m5"], coreq: [] },
+    { id: "s6m3", nombre: "METODOS NUMERICOS", creditos: 3, tipologia: "C", prereq: ["s3m3","s5m1"], coreq: [] },
+    { id: "s6m4", nombre: "INVESTIGACION DE OPERACIONES", creditos: 3, tipologia: "C", prereq: ["s3m5","s5m4"], coreq: [] },
+    { id: "s6m5", nombre: "TEORIA DE LA INFORMACION", creditos: 3, tipologia: "C", prereq: ["s5m4"], coreq: [] },
+
   ]},
   { nivel: 7, materias: [
-    { id: "s7m1", nombre: "Inteligencia Artificial", creditos: 2, tipologia: "C", prereq: ["s4m3","s6m5"] },
-    { id: "s7m2", nombre: "Pruebas y Gestión de la Configuración", creditos: 2, tipologia: "C", prereq: ["s6m1"] },
-    { id: "s7m3", nombre: "Redes de Comunicaciones", creditos: 4, tipologia: "C", prereq: ["s6m6"] },
-    { id: "s7m4", nombre: "Investigación de Operaciones", creditos: 4, tipologia: "C", prereq: ["s3m2","s5m5"] },
-    { id: "s7m5", nombre: "Metodología de la Investigación", creditos: 2, tipologia: "C", prereq: ["s5m5"] },
-    { id: "s7m6", nombre: "Sistemas y Organizaciones", creditos: 2, tipologia: "C", prereq: [] },
-    { id: "s7m7", nombre: "Ecología", creditos: 1, tipologia: "T", prereq: [] },
+    { id: "s7m1", nombre: "PRUEBS Y GESTION DE LA CONFIGURACION", creditos: 2, tipologia: "C", prereq: ["s5m3"], coreq: [] },
+    { id: "s7m2", nombre: "FORMULACION Y EVALUACION DE PROYECTOS DE TI", creditos: 3, tipologia: "C", prereq: ["s6m1"], coreq: [] },
+    { id: "s7m3", nombre: "SISTEMAS OPERATIVOS", creditos: 3, tipologia: "C", prereq: ["s6m2"], coreq: [] },
+    { id: "s7m4", nombre: "REDES DE COMUNICACION", creditos: 3, tipologia: "C", prereq: ["s6m5"]coreq: [] },
+    { id: "s7m5", nombre: "INTELIGENCIA ARTIFICIAL", creditos: 3, tipologia: "C", prereq: ["s4m6","s6m3"], coreq: [] },
+    { id: "s7m6", nombre: "SEMIOTICA INFORMATICA", creditos: 2, tipologia: "C", prereq: ["s3m6", "s4m5"], coreq: [] },
+    { id: "s7m7", nombre: "ETICA Y CIUDADANIA", creditos: 2, tipologia: "T", prereq: [] ,coreq: []},
+ 
   ]},
   { nivel: 8, materias: [
-    { id: "s8m1", nombre: "Programación Distribuida y Paralela", creditos: 2, tipologia: "C", prereq: ["s7m3","s5m1"] },
-    { id: "s8m2", nombre: "Proyecto Integrador", creditos: 2, tipologia: "C", prereq: ["s6m1"] },
-    { id: "s8m3", nombre: "Formulación y Evaluación de Proyectos TI", creditos: 3, tipologia: "C", prereq: ["s6m1","s7m6"] },
-    { id: "s8m4", nombre: "Gestión de Redes y Servicios", creditos: 3, tipologia: "C", prereq: ["s7m3"] },
-    { id: "s8m5", nombre: "Modelos y Simulación", creditos: 3, tipologia: "C", prereq: ["s7m4"] },
-    { id: "s8m6", nombre: "Humanidades II (Cultura Política)", creditos: 2, tipologia: "B", prereq: [] },
+    { id: "s8m1", nombre: "PROGRAMACION DISTRIBUIDA Y PARALELA", creditos: 2, tipologia: "C", prereq: ["s7m4","s4m5"] },
+    { id: "s8m2", nombre: "GESTION DE REDES Y SERVICIOS", creditos: 3, tipologia: "C", prereq: ["s7m4"] ,coreq: [] },
+    { id: "s8m3", nombre: "MODELOS Y SIMULACION", creditos: 3, tipologia: "C", prereq: ["s6m4"] ,coreq: [] },
+    { id: "s8m4", nombre: "GESTION DE PROYECTOS DE TI", creditos: 3, tipologia: "C", prereq: ["s7m2"]  ,coreq: []},
+    { id: "s8m5", nombre: "CIENCIA, TECNOLOGIA E INNOVACION", creditos: 2, tipologia: "C", prereq: ["s5m4"] ,coreq: [] },
+
   ]},
   { nivel: 9, materias: [
-    { id: "s9m1", nombre: "Gestión de Proyectos de TI", creditos: 3, tipologia: "C", prereq: ["s8m3"] },
-    { id: "s9m2", nombre: "Ética", creditos: 1, tipologia: "T", prereq: [] },
-  ]},
-  { nivel: 10, materias: [
-    { id: "s10m1", nombre: "Trabajo de Grado", creditos: 7, tipologia: "P", prereq: ["s9m1","s7m5"] },
-  ]},
+    
 ];
 
 // Créditos requeridos por tipología
 const creditosRequeridos = {
-  B: 32,
-  C: 109,
-  T: 4,
-  P: 19,
+  B: 39,
+  C: 89,
+  O: 8,
+  T: 3,
+  P: 8,
 };
 
 export default function MallaCurricular() {
@@ -96,12 +97,27 @@ export default function MallaCurricular() {
     localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas));
   }, [aprobadas]);
 
-  const toggleMateria = (id: string) => {
-    setAprobadas(prev => prev.includes(id) ? prev.filter(m => m !== id) : [...prev, id]);
-  };
+  const toggleMateria = (id) => {
+  const materia = todasMaterias.find(m => m.id === id);
+  const coreqs = materia?.coreq || [];
 
-  const desbloqueada = (materia: { prereq: string[] }) =>
-    materia.prereq.every(p => aprobadas.includes(p));
+  setAprobadas(prev => {
+    if (prev.includes(id)) {
+      // Al desmarcar, también desmarca todos sus correquisitos
+      return prev.filter(m => m !== id && !coreqs.includes(m));
+    } else {
+      // Al marcar, también marca todos sus correquisitos
+      return [...new Set([...prev, id, ...coreqs])];
+    }
+  });
+};
+ const desbloqueada = (materia) => {
+  const prereqOk = materia.prereq.every(p => aprobadas.includes(p));
+  const coreqOk = (materia.coreq || []).every(p =>
+    aprobadas.includes(p) || todasMaterias.find(m => m.id === p)
+  );
+  return prereqOk; // correq no bloquea el acceso, solo el deseleccionar
+};
 
   const todasMaterias = semestres.flatMap(s => s.materias);
   const creditosAprobados = todasMaterias.filter(m => aprobadas.includes(m.id)).reduce((s, m) => s + m.creditos, 0);
