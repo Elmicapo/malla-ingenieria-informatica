@@ -18,7 +18,7 @@ const semestres = [
     { id: "s2m4", nombre: "LABORATORIO DE FISICA DEL MOVIEMIENTO", creditos: 1, tipologia: "B", prereq: [], coreq: [] },
     { id: "s2m5", nombre: "HUMANIDADES COMUNICATIVAS II", creditos: 2, tipologia: "B", prereq: ["s1m2"] , coreq: []},
     { id: "s2m6", nombre: "ALGORITMOS Y PROGRAMACION II", creditos: 4, tipologia: "C", prereq: ["s1m4"], coreq: [] },
-   {id: "s2m7", nombre: "DEPORTE, ARTE Y RECREACION", creditos:1 , tipologia: "T", prereq: [], , coreq: []} ,
+   {id: "s2m7", nombre: "DEPORTE, ARTE Y RECREACION", creditos:1 , tipologia: "T", prereq: [] , coreq: []} ,
                                                                                                             
   ]},
   { nivel: 3, materias: [
@@ -58,14 +58,14 @@ const semestres = [
     { id: "s7m1", nombre: "PRUEBS Y GESTION DE LA CONFIGURACION", creditos: 2, tipologia: "C", prereq: ["s5m3"], coreq: [] },
     { id: "s7m2", nombre: "FORMULACION Y EVALUACION DE PROYECTOS DE TI", creditos: 3, tipologia: "C", prereq: ["s6m1"], coreq: [] },
     { id: "s7m3", nombre: "SISTEMAS OPERATIVOS", creditos: 3, tipologia: "C", prereq: ["s6m2"], coreq: [] },
-    { id: "s7m4", nombre: "REDES DE COMUNICACION", creditos: 3, tipologia: "C", prereq: ["s6m5"]coreq: [] },
+    { id: "s7m4", nombre: "REDES DE COMUNICACION", creditos: 3, tipologia: "C", prereq: ["s6m5"], coreq: [] },
     { id: "s7m5", nombre: "INTELIGENCIA ARTIFICIAL", creditos: 3, tipologia: "C", prereq: ["s4m6","s6m3"], coreq: [] },
     { id: "s7m6", nombre: "SEMIOTICA INFORMATICA", creditos: 2, tipologia: "C", prereq: ["s3m6", "s4m5"], coreq: [] },
     { id: "s7m7", nombre: "ETICA Y CIUDADANIA", creditos: 2, tipologia: "T", prereq: [] ,coreq: []},
  
   ]},
   { nivel: 8, materias: [
-    { id: "s8m1", nombre: "PROGRAMACION DISTRIBUIDA Y PARALELA", creditos: 2, tipologia: "C", prereq: ["s7m4","s4m5"] },
+    { id: "s8m1", nombre: "PROGRAMACION DISTRIBUIDA Y PARALELA", creditos: 2, tipologia: "C", prereq: ["s7m4","s4m5"], coreq: []},
     { id: "s8m2", nombre: "GESTION DE REDES Y SERVICIOS", creditos: 3, tipologia: "C", prereq: ["s7m4"] ,coreq: [] },
     { id: "s8m3", nombre: "MODELOS Y SIMULACION", creditos: 3, tipologia: "C", prereq: ["s6m4"] ,coreq: [] },
     { id: "s8m4", nombre: "GESTION DE PROYECTOS DE TI", creditos: 3, tipologia: "C", prereq: ["s7m2"]  ,coreq: []},
@@ -74,7 +74,7 @@ const semestres = [
   ]},
   { nivel: 9, materias: [
      {id: "s9m1", nombre: "TRABAJO DE GRADO", creditos: 8, tipologia: "P", prereq: ["s8m5","s8m4"] , coreq: []}, 
-    
+     ]},
 ];
 
 // Créditos requeridos por tipología
@@ -98,7 +98,7 @@ export default function MallaCurricular() {
     localStorage.setItem("materiasAprobadas", JSON.stringify(aprobadas));
   }, [aprobadas]);
 
-  const toggleMateria = (id) => {
+    const toggleMateria = (id) => {
   const materia = todasMaterias.find(m => m.id === id);
   const coreqs = materia?.coreq || [];
 
