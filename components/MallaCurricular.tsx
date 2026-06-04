@@ -14,7 +14,7 @@ const semestres = [
   { nivel: 2, materias: [
     { id: "s2m1", nombre: "GEOMETRIA VECTORIAL", creditos: 3, tipologia: "B", prereq: [], coreq: [] },
     { id: "s2m2", nombre: "CALCULO DIFERENCIAL", creditos: 3, tipologia: "B", prereq: ["s1m1"], coreq: [] },
-    { id: "s2m3", nombre: "FISICA DEL MOVIMIENTO", creditos: 3, tipologia: "B", prereq: ["s1m1"], coreq: ["s2m4]  },
+    { id: "s2m3", nombre: "FISICA DEL MOVIMIENTO", creditos: 3, tipologia: "B", prereq: ["s1m1"], coreq: ["s2m4"]  },
     { id: "s2m4", nombre: "LABORATORIO DE FISICA DEL MOVIEMIENTO", creditos: 1, tipologia: "B", prereq: [], coreq: [] },
     { id: "s2m5", nombre: "HUMANIDADES COMUNICATIVAS II", creditos: 2, tipologia: "B", prereq: ["s1m2"] , coreq: []},
     { id: "s2m6", nombre: "ALGORITMOS Y PROGRAMACION II", creditos: 4, tipologia: "C", prereq: ["s1m4"], coreq: [] },
