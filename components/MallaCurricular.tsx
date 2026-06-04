@@ -73,6 +73,7 @@ const semestres = [
 
   ]},
   { nivel: 9, materias: [
+     {id: "s9m1", nombre: "TRABAJO DE GRADO", creditos: 8, tipologia: "P", prereq: ["s8m5","s8m4"] , coreq: []}, 
     
 ];
 
